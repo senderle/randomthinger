@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Randomthinger</title>
+  <meta name="description" content="A way to choose random things.">
+  <meta name="author" content="scott.enderle@gmail.com">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <script src="js/choices.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <div id="wrapper">
+
+    <div class="centerpiece">
+      <button type="button" id="chooser-button" disabled>Choose Wisely!</button>
+      <div id="chooser-output"></div>
+    </div>
+
+
+  </div> <!-- end wrapper -->
+  <script>
+    (async function() {
+        let button = document.getElementById('chooser-button');
+        let output_div = document.getElementById('chooser-output');
+        let output = document.createTextNode('');
+        output_div.appendChild(output);
+
+        let chooser = await document.modules.util.Chooser('data/choices.csv');
+        button.addEventListener('click', function() {
+            output.textContent = chooser.formatChoices();
+        });
+        button.disabled = false;
+    })()
+  </script>
+</body>
+</html>
