@@ -3,11 +3,28 @@
     margin: 20% auto;
 }
 
-#chooser-button {
-    margin: 10px;
-}
-
-#wrapper {
+#chooser-button-div {
+    width: 90%;
+    margin: 20px auto;
     text-align: center;
 }
 
+#chooser-output {
+    width: 100%;
+    margin: 20px auto;
+}
+
+.chooser-attr-output-div {
+    float: left;
+    clear: left;
+    text-align: right;
+    white-space: nowrap;
+    width: 48%;
+    margin: 0 1%;
+}
+
+.chooser-value-output-div {
+    float: left;
+    margin: 0 1%;
+    white-space: nowrap;
+}

@@ -21,22 +21,24 @@
   <div id="wrapper">
 
     <div class="centerpiece">
-      <button type="button" id="chooser-button" disabled>Choose Wisely!</button>
+      <div id="chooser-button-div">
+        <button type="button" id="chooser-button" disabled>Choose Wisely!</button>
+      </div>
       <div id="chooser-output"></div>
     </div>
 
 
   </div> <!-- end wrapper -->
   <script>
-    (async function() {
+    (function() {
         let button = document.getElementById('chooser-button');
-        let output_div = document.getElementById('chooser-output');
-        let output = document.createTextNode('');
-        output_div.appendChild(output);
+        let outputDiv = document.getElementById('chooser-output');
 
-        let chooser = await document.modules.util.Chooser('data/choices.csv');
+        let chooser = new document.modules.util.Chooser('data/choices.csv',
+                                                        outputDiv);
+        
         button.addEventListener('click', function() {
-            output.textContent = chooser.formatChoices();
+            chooser.renderChoice();
         });
         button.disabled = false;
     })()
