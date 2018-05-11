@@ -1,6 +1,24 @@
 document.modules = document.modules || {};
 document.modules.util = document.modules.util || {};
 (function(ns) {
+    let copySeq = function(inSeq) {
+        let seq = [];
+        for (i = 0; i < inSeq.length; i++) {
+            seq.push(inSeq[i]);
+        }
+        return seq;
+    }
+    let shuffled = function(seq) {
+        seq = copySeq(seq);
+        let max_i = seq.length;
+        for (let i = 0; i < max_i; i++) {
+            let randix = i + Math.floor(Math.random() * (max_i - i));
+            let temp = seq[randix];
+            seq[randix] = seq[i];
+            seq[i] = temp;
+        }
+        return seq;
+    }
     ns.Chooser = function(url, output) {
         this.choose = function(attr) {
             let ch = 'null';
@@ -11,6 +29,8 @@ document.modules.util = document.modules.util || {};
             }
             return ch
         };
+        this.chooseMany = function(attr, n) {
+        }
         this.getChoice = function() {
             let result = {};
             for (let i = 0; i < this.choice_attrs.length; i++) {
@@ -57,9 +77,7 @@ document.modules.util = document.modules.util || {};
         this.output = output;
         this.renderers = {};
         this.setChoices([{}]);
-        console.log('a');
         this.promise = d3.csv(url).then(choices => {
-            console.log('b');
             this.setChoices(choices);
             return this;
         });
