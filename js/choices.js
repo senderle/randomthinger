@@ -3,9 +3,13 @@ document.modules.util = document.modules.util || {};
 (function(ns) {
     ns.Chooser = function(url, output) {
         this.choose = function(attr) {
-           let n = this.choices.length;
-           let i = Math.floor(Math.random() * n);
-           return this.choices[i][attr];
+            let ch = 'null';
+            while (ch === 'null') {
+                let n = this.choices.length;
+                let i = Math.floor(Math.random() * n);
+                ch = this.choices[i][attr];
+            }
+            return ch
         };
         this.getChoice = function() {
             let result = {};
@@ -53,7 +57,9 @@ document.modules.util = document.modules.util || {};
         this.output = output;
         this.renderers = {};
         this.setChoices([{}]);
+        console.log('a');
         this.promise = d3.csv(url).then(choices => {
+            console.log('b');
             this.setChoices(choices);
             return this;
         });

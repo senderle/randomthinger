@@ -4,9 +4,8 @@
 }
 
 #chooser-button-div {
-    width: 90%;
+    width: 55%;
     margin: 20px auto;
-    text-align: center;
 }
 
 #chooser-output {
@@ -19,12 +18,13 @@
     clear: left;
     text-align: right;
     white-space: nowrap;
-    width: 48%;
+    width: 25%;
     margin: 0 1%;
 }
 
 .chooser-value-output-div {
     float: left;
     margin: 0 1%;
-    white-space: nowrap;
+    max-width: 70%;
+    white-space: normal;
 }
