@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Randomthinger</title>
+  <meta name="description" content="A way to choose random things.">
+  <meta name="author" content="scott.enderle@gmail.com">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <script src="js/choices.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <div id="wrapper">
+
+    <div class="centerpiece">
+      <div id="chooser-button-div">
+        <button type="button" id="chooser-button" disabled>Definitions</button>
+      </div>
+      <div id="chooser-output"></div>
+    </div>
+
+  </div> <!-- end wrapper -->
+  <script>
+    (function() {
+        let button = document.getElementById('chooser-button');
+        let outputDiv = document.getElementById('chooser-output');
+
+        let chooser = new document.modules.util.Chooser('data/choices.csv',
+                                                        outputDiv);
+        
+        button.addEventListener('click', function() {
+            chooser.renderChoice();
+        });
+        button.disabled = false;
+    })()
+  </script>
+</body>
+</html>
